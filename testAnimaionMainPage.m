@@ -17,7 +17,7 @@ classdef testAnimaionMainPage < matlab.unittest.TestCase
             newData =  get(obj.tableData,'Data');
             newSize = size(newData);
             close(obj.figH)
-            testCase.verifyFail('Thi is a delibirate failture');  
+            testCase.verifyEqual(preSize,newSize);  
         end
     end
 end
