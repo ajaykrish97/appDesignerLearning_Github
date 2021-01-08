@@ -17,7 +17,7 @@ classdef testAnimaionMainPage < matlab.unittest.TestCase
             newData =  get(obj.tableData,'Data');
             newSize = size(newData);
             close(obj.figH)
-            testCase.verifyEqual(preSize,newSize);  
+            testCase.verifyNotEqual(preSize,newSize);  
         end
     end
 end
