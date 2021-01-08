@@ -24,6 +24,7 @@ classdef plotApp < handle
         input_data;
         init_val;
     end
+    
     methods
         function obj = plotApp(varargin)
             % If input arguments given,parse the arguments and get the x
