@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#PlotDiv{
+width:100%;
+height:100%;
+}
+</style>
+<script src = "plotly.min.js"></script>
+<script type="text/javascript">
+function setup(htmlComponent)
+{
+var layout = {
+  autosize:true,
+  title:'HTML component plotly - line',
+  xaxis: {
+    title: {
+      text: 'x Axis',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'y Axis',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    }
+  }
+};
+var config = {responsive: true};
+// To make the plot occupy 100% height.
+var d3 = Plotly.d3;
+var HEIGHT_IN_PERCENT_OF_PARENT = 90;
+var gd3 = d3.select('#PlotDiv').append('div').style({
+height: HEIGHT_IN_PERCENT_OF_PARENT + 'vh',
+'margin-top': 0 + 'vh',
+'margin-bottom': 10 + 'vh'});
+
+//Call the ploty to create plot.
+Plotly.plot('PlotDiv',[],layout,config);
+// Add listner to HTML component to reposnd to the data change in HTML.
+htmlComponent.addEventListener("DataChanged", function(event) {
+//Get the data from html component.
+var plotType = htmlComponent.Data.plotType;
+var plotData = {x:htmlComponent.Data.x,y:htmlComponent.Data.y,type:plotType,mode:plotType};
+var layout = {
+  autosize:true,
+  title: 'HTML component plotly - ' + plotType,
+  xaxis: {
+    title: {
+      text: 'x Axis',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'y Axis',
+      font: {
+        family: 'Courier New, monospace',
+        size: 18,
+        color: '#7f7f7f'
+      }
+    }
+  }
+};
+var data = [plotData];
+var graphDiv = document.getElementById('PlotDiv')
+var dataLength = graphDiv.data.length;
+//Delete the pre existing traces.
+if(dataLength == 1)
+{
+Plotly.deleteTraces(graphDiv,0);
+}
+Plotly.plot('PlotDiv',data,layout);
+//Reset the data. A listner is added in the MATLAB when the data is set using uihtml data,table of GUI is updated.
+htmlComponent.Data = htmlComponent.Data;
+});
+}
+</script>
+</head>
+<body>
+<div id = "PlotDiv"></div>
+</body>
+</html>

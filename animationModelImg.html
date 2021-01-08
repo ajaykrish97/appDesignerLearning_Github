@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img:hover {
+  background-color: #45a049;
+  border: solid black;
+border-width: thin;
+}
+img{
+width:99%;
+cursor: pointer;
+}
+#bordered
+{
+border: solid black;
+border-width: thin;
+}
+</style>
+<script type="text/javascript">
+function setup(htmlComponent) {
+//Load the model image.
+            document.getElementById("dataDisplay").src = htmlComponent.Data + ".png";
+            document.getElementById("figCaption").innerHTML = htmlComponent.Data;
+            // Change the data to open the model.
+            document.getElementById("dataDisplay").addEventListener("click", function(event) {
+            htmlComponent.Data = htmlComponent.Data;
+         });
+        }
+</script>
+</head>
+<body id = "bordered">
+    <img id ="dataDisplay" src ="" height="280">
+    <figcaption ><b id = "figCaption"> </b></figcaption>
+</body>
+</html>
+   
